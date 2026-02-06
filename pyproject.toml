@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lm-wm-tools"
+version = "0.1.0"
+description = "Watermarking utilities compatible with vLLM"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "torch",
+    "vllm",
+    "scipy",
+    "datasets==3.6.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["lm_wm_tools*"]
