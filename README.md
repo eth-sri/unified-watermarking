@@ -1,7 +1,9 @@
 # A Unified Framework for LLM Watermarks
 
-This repository provides a unified framework for LLM watermarking. It supports
-existing schemes and makes it straightforward to implement new ones.
+This repository provides a unified framework for LLM watermarking.
+It supports existing schemes and makes it straightforward to implement new ones.
+
+For more details, check out our paper [A Unified Framework for LLM Watermarks](https://arxiv.org/abs/2602.06754).
 
 ## Installation
 
@@ -17,7 +19,7 @@ uv pip install -e .
 
 ## Overview
 
-Watermarking is integrated through a vLLM logits processor for fast inference.
+Watermarking is integrated via a vLLM logits processor for fast inference.
 
 Key locations:
 - Implemented watermark classes: `src/lm_wm_tools/watermarks`
@@ -26,7 +28,7 @@ Key locations:
 
 ## Generating and Detecting Watermarked Text
 
-Watermarks are applied through a single vLLM logits processor.
+Watermarks are applied via a single vLLM logits processor.
 - Offline (`vllm.LLM`): pass watermark config through `SamplingParams.extra_args`
 - Online (`vllm serve`): pass watermark config through `vllm_xargs`
 
@@ -82,7 +84,7 @@ resp = client.chat.completions.create(
 print(resp.choices[0].message.content)
 ```
 
-If the watermark config is invalid, request processing can fail.
+If the watermark config is invalid, request processing may fail.
 
 ### Offline
 
@@ -194,4 +196,28 @@ from lm_wm_tools.metrics.quality_metrics import compute_perplexity, compute_self
 
 perplexities = compute_perplexity(model, input_ids, attention_mask)
 self_bleu = compute_self_bleu(generated_sequences)
+```
+
+## Contact
+
+Thibaud Gloaguen, tgloaguen@student.ethz.ch<br>
+Robin Staab, robin.staab@inf.ethz.ch<br>
+Nikola Jovanović, nikola.jovanovic@inf.ethz.ch<br>
+Martin Vechev
+
+
+## Citation
+
+If you use our code, please cite the following.
+
+```
+@misc{gloaguen2026unifiedframeworkllmwatermarks,
+      title={A Unified Framework for LLM Watermarks}, 
+      author={Thibaud Gloaguen and Robin Staab and Nikola Jovanović and Martin Vechev},
+      year={2026},
+      eprint={2602.06754},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR},
+      url={https://arxiv.org/abs/2602.06754}, 
+}
 ```
